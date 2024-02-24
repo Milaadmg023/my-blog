@@ -14,9 +14,9 @@ function NewPosts() {
         loop={true}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper w-[70%]"
+        className="mySwiper lg:w-[70%]"
       >
-        <SwiperSlide className="h-[30rem] rounded-lg grid grid-cols-2 lg:grid-cols-4 grid-rows-2 lg:gap-1">
+        <SwiperSlide className="h-[30rem] rounded-lg grid grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-1">
             <div className="bg-gray-100 lg:col-span-2 flex items-end justify-end p-2">
                 <div id="post__info" dir="rtl" >
                     <h2 className="text-3xl">موضوع پست</h2>

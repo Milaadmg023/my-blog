@@ -14,7 +14,7 @@ function NewPosts() {
         loop={true}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper lg:w-[70%]"
+        className="mySwiper lg:w-[80%]"
       >
         <SwiperSlide className="h-[30rem] rounded-lg grid grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-1">
             <div className="bg-gray-100 lg:col-span-2 flex items-end justify-end p-2">

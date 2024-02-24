@@ -9,7 +9,7 @@ function Navbar() {
   };
   const menuItems = [
     {
-      item: "صفح اصلی",
+      item: "صفحه اصلی",
       path: "/",
     },
     {

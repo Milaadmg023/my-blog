@@ -1,39 +1,44 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [userMenu , setUserMenu] = React.useState(true)
-  const handleMenu =()=>{
-    setUserMenu(!userMenu)
-  }
-  const menuItems = [ 
+  const [userMenu, setUserMenu] = React.useState(true);
+  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const handleMenu = () => {
+    setUserMenu(!userMenu);
+  };
+  const menuItems = [
     {
       item: "صفح اصلی",
-      path: "/"
+      path: "/",
     },
     {
       item: "درباره ما",
-      path: "/about"
+      path: "/about",
     },
     {
       item: "ارتباط با ما",
-      path: "/contact"
+      path: "/contact",
     },
-  ]
+  ];
   const userItems = [
     {
-      item : "ورود",
-      path : ""
+      item: "ورود",
+      path: "",
     },
     {
-      item : "ثبت نام",
-      path : ""
+      item: "ثبت نام",
+      path: "",
     },
     {
-      item : "تنظیمات",
-      path : ""
+      item: "تنظیمات",
+      path: "",
     },
-  ]
+  ];
+
+  const handleMobileMenu = () => {
+    setMobileMenu(!mobileMenu);
+  };
   return (
     <>
       <nav>
@@ -46,6 +51,7 @@ function Navbar() {
                 aria-expanded="false"
                 className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 type="button"
+                onClick={handleMobileMenu}
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
@@ -90,12 +96,16 @@ function Navbar() {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {menuItems.map((item , index)=>{
-                    return(
-                      <Link key={index} to={item.path} className="hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium">
+                  {menuItems.map((item, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        to={item.path}
+                        className="hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium"
+                      >
                         {item.item}
                       </Link>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -139,22 +149,28 @@ function Navbar() {
                       alt=""
                       className="h-8 w-8 rounded-full bg-blue-100"
                       src="/3177440.png"
-                      />
+                    />
                   </button>
                 </div>
                 <div
                   aria-labelledby="user-menu-button"
                   aria-orientation="vertical"
-                  className={`${userMenu && "hidden "}hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                  className={`${
+                    userMenu && "hidden "
+                  }hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                   role="menu"
                   tabIndex="-1"
                 >
-                  {userItems.map((item , index)=>{
-                    return(
-                      <Link key={index} className="block px-4 py-2 text-sm text-gray-700" to={item.path}>
+                  {userItems.map((item, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        to={item.path}
+                      >
                         {item.item}
                       </Link>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -162,35 +178,23 @@ function Navbar() {
           </div>
         </div>
         {/* Mobile Menu */}
-        <div className="sm:hidden" id="mobile-menu">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            <a
-              aria-current="page"
-              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-              href="#"
-            >
-              Dashboard
-            </a>
-            <a
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-              href="#"
-            >
-              Team
-            </a>
-            <a
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-              href="#"
-            >
-              Projects
-            </a>
-            <a
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-              href="#"
-            >
-              Calendar
-            </a>
+        {mobileMenu && (
+          <div className="sm:hidden" id="mobile-menu">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              {menuItems.map((item, index) => {
+                return (
+                  <Link
+                    key={index}
+                    to={item.path}
+                    className="block rounded-md px-3 py-2 text-base font-medium"
+                  >
+                    {item.item}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </nav>
     </>
   );

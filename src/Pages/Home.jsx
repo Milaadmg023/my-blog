@@ -2,6 +2,7 @@ import React from 'react'
 import NewPosts from '../Components/NewPosts'
 import AllPosts from '../Components/AllPosts'
 import LatestPosts from './../Components/LatestPosts';
+import SearchBar from '../Components/SearchBar';
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       </div>
       
       <div>
+        <SearchBar/>
         <LatestPosts/>
       </div>
     </div>

@@ -3,6 +3,7 @@ import NewPosts from '../Components/NewPosts'
 import AllPosts from '../Components/AllPosts'
 import LatestPosts from './../Components/LatestPosts';
 import SearchBar from '../Components/SearchBar';
+import LastComments from '../Components/LastComments';
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <div>
         <SearchBar/>
         <LatestPosts/>
+        <LastComments/>
       </div>
     </div>
     </>

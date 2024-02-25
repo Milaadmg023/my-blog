@@ -47,8 +47,8 @@ function AllPosts() {
     <section id="posts__container" className="flex flex-col gap-2">
       {postData.map((item, index) => {
         return (
-          <>
-            <div className="grid lg:grid-cols-2 gap-2 pb-2" key={index}>
+          <div key={index}>
+            <div className="grid lg:grid-cols-2 gap-2 pb-2">
               <div
                 id="post__info"
                 dir="rtl"
@@ -71,7 +71,7 @@ function AllPosts() {
               </div>
             </div>
             <div className="h-0.5 bg-blue-500 w-[60%] mx-auto"></div>
-          </>
+          </div>
         );
       })}
     </section>

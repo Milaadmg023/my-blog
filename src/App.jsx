@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
 import SinglePost from './Pages/SinglePost';
+import FilterdPosts from './Pages/FilterdPosts';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/post/:postId' element={<SinglePost/>}/> 
+      <Route path='/filterdposts/:tag' element={<FilterdPosts/>}/>
     </Routes>
     </BrowserRouter>
   )

@@ -4,6 +4,7 @@ import AllPosts from '../Components/AllPosts'
 import LatestPosts from './../Components/LatestPosts';
 import SearchBar from '../Components/SearchBar';
 import LastComments from '../Components/LastComments';
+import Tags from '../Components/Tags';
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
         <SearchBar/>
         <LatestPosts/>
         <LastComments/>
+        <Tags/>
       </div>
     </div>
     </>

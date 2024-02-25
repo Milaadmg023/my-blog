@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AllPosts() {
   const postData = [
@@ -9,6 +10,7 @@ function AllPosts() {
       date: "فوریه 28, 2019",
       desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
       img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
+      id:1,
     },
     {
       tag: "آژانس",
@@ -17,6 +19,7 @@ function AllPosts() {
       date: "فوریه 28, 2019",
       desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
       img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
+      id:2,
     },
     {
       tag: "آژانس",
@@ -25,6 +28,7 @@ function AllPosts() {
       date: "فوریه 28, 2019",
       desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
       img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
+      id:3,
     },
     {
       tag: "آژانس",
@@ -33,6 +37,7 @@ function AllPosts() {
       date: "فوریه 28, 2019",
       desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
       img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
+      id:4,
     },
     {
       tag: "آژانس",
@@ -41,6 +46,7 @@ function AllPosts() {
       date: "فوریه 28, 2019",
       desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
       img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
+      id:5,
     },
   ];
   return (
@@ -74,9 +80,12 @@ function AllPosts() {
               </div>
             </div>
             <div className="flex justify-center my-3">
-              <button class="cursor-pointer uppercase bg-white px-4 py-2 active:translate-x-0.5 active:translate-y-0.5 hover:shadow-[0.5rem_0.5rem_#F44336,-0.5rem_-0.5rem_#00BCD4] transition">
-                مشاهده پست
-              </button>
+              <Link to={`post/${item.id}`}>
+                <button class="cursor-pointer uppercase bg-white px-4 py-2 active:translate-x-0.5 active:translate-y-0.5 hover:shadow-[0.5rem_0.5rem_#F44336,-0.5rem_-0.5rem_#00BCD4] transition">
+                  مشاهده پست
+                </button>
+              </Link>
+
             </div>
 
             <div className="h-0.5 bg-blue-500 w-[60%] mx-auto"></div>

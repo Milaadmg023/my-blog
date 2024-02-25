@@ -9,12 +9,12 @@ function Home() {
   return (
     <>
     <NewPosts/>
-    <div className='grid lg:grid-cols-3 lg:w-[80%] mx-auto mt-6'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 lg:w-[80%] mx-auto mt-6'>
       <div className='col-span-2'>
         <AllPosts />
       </div>
       
-      <div>
+      <div className='pt-2 lg:p-0'>
         <SearchBar/>
         <LatestPosts/>
         <LastComments/>

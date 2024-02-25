@@ -66,10 +66,19 @@ function AllPosts() {
                 </div>
                 <p>{item.desc}</p>
               </div>
-              <div id="post__cover" className="flex items-center order-first lg:order-last">
+              <div
+                id="post__cover"
+                className="flex items-center order-first lg:order-last"
+              >
                 <img src={item.img} alt="post img" className="p-1 rounded-xl" />
               </div>
             </div>
+            <div className="flex justify-center my-3">
+              <button class="cursor-pointer uppercase bg-white px-4 py-2 active:translate-x-0.5 active:translate-y-0.5 hover:shadow-[0.5rem_0.5rem_#F44336,-0.5rem_-0.5rem_#00BCD4] transition">
+                مشاهده پست
+              </button>
+            </div>
+
             <div className="h-0.5 bg-blue-500 w-[60%] mx-auto"></div>
           </div>
         );

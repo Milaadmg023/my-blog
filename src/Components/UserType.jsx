@@ -1,6 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function UserLogo() {
+function UserType() {
+
+    const [userMenu, setUserMenu] = React.useState(true);
+  
+    const handleMenu = () => {
+      setUserMenu(!userMenu);
+    };
+    const userItems = [
+        {
+          item: "ورود",
+          path: "",
+        },
+        {
+          item: "ثبت نام",
+          path: "",
+        },
+        {
+          item: "تنظیمات",
+          path: "",
+        },
+      ];
+
   return (
     <>
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -71,4 +93,4 @@ function UserLogo() {
   );
 }
 
-export default UserLogo;
+export default UserType;

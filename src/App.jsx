@@ -7,6 +7,8 @@ import Contact from "./Pages/Contact";
 import SinglePost from "./Pages/SinglePost";
 import FilterdPosts from "./Pages/FilterdPosts";
 import SinglePostContext from "./Context/SinglePostContext";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
 
 function App() {
   const postData = [
@@ -67,6 +69,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/post/:postId" element={<SinglePost />} />
           <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </SinglePostContext.Provider>

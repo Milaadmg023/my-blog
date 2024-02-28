@@ -23,9 +23,6 @@ function Home() {
         <Tags/>
       </div>
     </div>
-    <div className='my-4'>
-      <Socials/>
-    </div>
     </>
   )
 }

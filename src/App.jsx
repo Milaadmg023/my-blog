@@ -9,6 +9,7 @@ import FilterdPosts from "./Pages/FilterdPosts";
 import SinglePostContext from "./Context/SinglePostContext";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
+import Socials from "./Components/Socials";
 
 function App() {
   const postData = [
@@ -72,6 +73,9 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
         </Routes>
+        <div className="my-4">
+          <Socials/>
+        </div>
       </BrowserRouter>
     </SinglePostContext.Provider>
   );

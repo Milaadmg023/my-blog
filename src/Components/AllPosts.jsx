@@ -6,7 +6,7 @@ import SinglePostContext from "../Context/SinglePostContext";
 function AllPosts() {
   const postData = useContext(SinglePostContext)
   const {tag} = useParams()
-  console.log(tag);
+  
   return (
     <section id="posts__container" className="flex flex-col gap-2">
       {postData.map((item, index) => {
@@ -40,7 +40,7 @@ function AllPosts() {
               </div>
             </div>
             <div className="flex justify-center my-3">
-              <Link to={`post/${item.id}`}>
+              <Link to={`/post/${item.id}`}>
                 <button className="cursor-pointer uppercase bg-white px-4 py-2 active:translate-x-0.5 active:translate-y-0.5 hover:shadow-[0.5rem_0.5rem_#F44336,-0.5rem_-0.5rem_#00BCD4] transition">
                   مشاهده پست
                 </button>

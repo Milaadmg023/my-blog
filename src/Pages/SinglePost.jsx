@@ -6,11 +6,10 @@ function SinglePost() {
   const { postId } = useParams();
   const postData = useContext(SinglePostContext);
   const post = postData.filter((item) => item.id === Number(postId));
-  console.log(post[0].title);
   return (
     <section className="w-[80%] mx-auto">
       <div className="flex items-center justify-center">
-        <img src={post[0].img} alt="post image" className="h-[70vh]" />
+        <img src={post[0].img} alt="post image" className="max-h-[70vh]" />
       </div>
       <div dir="rtl" className="w-[90%] mx-auto mt-4">
         {" "}

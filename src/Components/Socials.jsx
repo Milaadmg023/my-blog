@@ -2,7 +2,7 @@ import React from "react";
 
 function Socials() {
   return (
-    <>
+    <section className="bg-gray-100 py-4">
       <h2 dir="rtl" className="text-center text-lg">ما را در شبکه های اجتماعی دنبال کنید.</h2>
       <ul className="social">
         <li className="social-item">
@@ -84,7 +84,7 @@ function Socials() {
           </a>
         </li>
       </ul>
-    </>
+    </section>
   );
 }
 

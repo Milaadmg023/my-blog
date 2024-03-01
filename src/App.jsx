@@ -10,6 +10,9 @@ import SinglePostContext from "./Context/SinglePostContext";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Socials from "./Components/Socials";
+import UserDashboard from "./Pages/UserDashboard";
+import Dashboard from "./Pages/Dashboard";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   const postData = [
@@ -65,6 +68,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path="*" element={<NotFound/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -72,8 +76,10 @@ function App() {
           <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/userdashboard" element={<UserDashboard/>}/>
+          <Route path="/admindashboard" element={<Dashboard/>}/>
         </Routes>
-        <div className="my-4">
+        <div>
           <Socials/>
         </div>
       </BrowserRouter>

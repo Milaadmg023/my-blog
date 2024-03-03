@@ -10,9 +10,13 @@ import SinglePostContext from "./Context/SinglePostContext";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Socials from "./Components/Socials";
-import UserDashboard from "./Pages/UserDashboard";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 import NotFound from "./Pages/NotFound";
+import Saved from "./Pages/Dashboard/Saved";
+import Setting from "./Pages/Dashboard/Setting";
+import Posts from "./Pages/Dashboard/Posts";
+import Users from "./Pages/Dashboard/Users";
+import Statics from "./Pages/Dashboard/Statics";
 
 function App() {
   const postData = [
@@ -76,8 +80,16 @@ function App() {
           <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/userdashboard" element={<UserDashboard/>}/>
-          <Route path="/admindashboard" element={<Dashboard/>}/>
+          <Route path="/user" element={<Dashboard/>}>
+            <Route index path="/user/" element={<Saved/>}/>
+            <Route path="/user/setting" element={<Setting/>}/>
+          </Route>
+          <Route path="/admin" element={<Dashboard/>}>
+            <Route path="/admin/" element={<Posts/>}/>
+            <Route path="/admin/users" element={<Users/>}/>
+            <Route path="/admin/statics" element={<Statics/>}/>
+            <Route path="/admin/setting" element={<Setting/>}/>
+          </Route>
         </Routes>
         <div>
           <Socials/>

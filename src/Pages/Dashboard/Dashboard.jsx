@@ -1,21 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Dashboard() {
   const userItems = [
     {
       name: "نشان شده ها",
-      link: "bookmarks",
+      link: "",
       icon : "bi bi-bookmark"
     },
     {
-      name: "تنظیمات",
+      name: "مشخصات",
       link: "setting",
       icon : "bi bi-gear"
     },
   ];
   const adminItems = [
-
+    {
+        name : "خانه",
+        link : "",
+        icon : "bi bi-house"
+    },
+    {
+        name : "کاربران",
+        link : "users",
+        icon : "bi bi-people-fill"
+    },
+    {
+        name : "آمار",
+        link : "statics",
+        icon : "bi bi-card-checklist"
+    },
+    {
+      name : "تنظیمات",
+      link : "setting",
+      icon : "bi bi-gear"
+  },
   ]
   return (
     <>
@@ -51,7 +70,7 @@ function Dashboard() {
             </div>
             <div className="flex-1 overflow-auto py-2">
               <nav className="grid items-start px-4 text-sm font-medium">
-                {userItems.map((item , index) => {
+                {adminItems.map((item , index) => {
                   return (
                     <Link to={item.link} key={index}
                       className="flex items-center gap-3 rounded-lg border-b px-3 py-2 text-gray-900  transition-all"
@@ -101,6 +120,7 @@ function Dashboard() {
             </button>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+            <Outlet/>
           </main>
         </div>
       </div>

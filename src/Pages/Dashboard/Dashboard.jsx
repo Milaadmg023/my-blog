@@ -1,41 +1,55 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 
 function Dashboard() {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const directory = pathname.split("/")[1];
+
+  let items = [];
   const userItems = [
     {
       name: "نشان شده ها",
       link: "",
-      icon : "bi bi-bookmark"
+      icon: "bi bi-bookmark",
     },
     {
       name: "مشخصات",
       link: "setting",
-      icon : "bi bi-gear"
+      icon: "bi bi-gear",
     },
   ];
   const adminItems = [
     {
-        name : "خانه",
-        link : "",
-        icon : "bi bi-house"
+      name: "خانه",
+      link: "",
+      icon: "bi bi-house",
     },
     {
-        name : "کاربران",
-        link : "users",
-        icon : "bi bi-people-fill"
+      name: "کاربران",
+      link: "users",
+      icon: "bi bi-people-fill",
     },
     {
-        name : "آمار",
-        link : "statics",
-        icon : "bi bi-card-checklist"
+      name: "آمار",
+      link: "statics",
+      icon: "bi bi-card-checklist",
     },
     {
-      name : "تنظیمات",
-      link : "setting",
-      icon : "bi bi-gear"
-  },
-  ]
+      name: "تنظیمات",
+      link: "setting",
+      icon: "bi bi-gear",
+    },
+  ];
+
+
+
+  if (directory === "admin") {
+    items = adminItems;
+  } else if (directory === "user") {
+    items = userItems;
+  }
+
   return (
     <>
       <div
@@ -70,9 +84,11 @@ function Dashboard() {
             </div>
             <div className="flex-1 overflow-auto py-2">
               <nav className="grid items-start px-4 text-sm font-medium">
-                {adminItems.map((item , index) => {
+                {items.map((item, index) => {
                   return (
-                    <Link to={item.link} key={index}
+                    <Link
+                      to={item.link}
+                      key={index}
                       className="flex items-center gap-3 rounded-lg border-b px-3 py-2 text-gray-900  transition-all"
                     >
                       <i className={item.icon}></i>
@@ -120,7 +136,7 @@ function Dashboard() {
             </button>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-            <Outlet/>
+            <Outlet />
           </main>
         </div>
       </div>

@@ -11,7 +11,7 @@ function Saved() {
     <section className='grid lg:grid-cols-3 gap-2' dir='rtl'>
       {postData.map((item , index)=>{
         return(
-          <div className='border-2 p-2 rounded-lg'>
+          <div className='border-2 p-2 rounded-lg' key={index}>
             <h2 className='font-bold text-lg'>{item.title}</h2>
             <p className='text-gray-600 my-2'>{item.desc}</p>
             <Link className='bg-blue-600 text-white p-1 rounded-lg'>مشاهده پست</Link>

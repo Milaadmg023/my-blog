@@ -5,7 +5,7 @@ import LatestPosts from './../Components/LatestPosts';
 import SearchBar from '../Components/SearchBar';
 import LastComments from '../Components/LastComments';
 import Tags from '../Components/Tags';
-import Socials from '../Components/Socials';
+
 
 function Home() {
   return (

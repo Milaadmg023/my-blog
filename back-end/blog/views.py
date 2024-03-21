@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
-from .serializers import PostSerializer
+from .serializers import PostSerializer, UserSerializer
 from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
@@ -21,3 +22,17 @@ class PostView(APIView):
             new_post.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'message': 'error creating post!'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RegisterUserView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                "user": serializer.data,
+                "refresh": str(refresh),
+                "access": str(refresh.access_token)
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

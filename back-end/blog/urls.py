@@ -9,7 +9,8 @@ app_name = 'blog'
 
 urlpatterns = [
     path('posts', views.PostView.as_view(), name='post'),
-    path('user', views.RegisterUserView.as_view(), name='user'),
+    path('register', views.RegisterUserView.as_view(), name='register'),
+    path('login', views.LoginUser.as_view(), name='login'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
 ]

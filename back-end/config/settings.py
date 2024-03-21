@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zi)qzrau!25)nky!846ct%qoc2zeo@#4t9-bm2zn=*-phxpaon
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS  = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'blog.apps.BlogConfig',
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
     # module
     'rest_framework',
     'rest_framework_simplejwt',
-    "corsheaders"
+    "corsheaders",
+    'django_jalali',
 ]
 
 MIDDLEWARE = [

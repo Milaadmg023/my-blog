@@ -35,3 +35,10 @@ class LoginUserView(APIView):
                 "access": str(refresh.access_token)
             }, status=status.HTTP_200_OK)
         return Response({'error': "user not found"}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class UserProfileView(APIView):
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(instance=user)
+        return Response(serializer.data)

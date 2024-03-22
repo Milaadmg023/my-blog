@@ -5,6 +5,7 @@ from .models import Post
 from .serializers import PostSerializer
 from rest_framework import status
 
+
 # Create your views here.
 
 class PostView(APIView):
@@ -14,9 +15,9 @@ class PostView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = PostSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data, context={'user': request.user})
         if serializer.is_valid():
-            new_post = Post.objects.create(title=request.data['title'], description=request.data['description'])
-            new_post.save()
+            serializer.validated_data['author'] = request.user
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({'message': 'error creating post!'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

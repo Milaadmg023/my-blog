@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Post, Category
-from .serializers import PostSerializer, CaregorySerializer
+from .models import Post, Category, BookMark
+from .serializers import PostSerializer, CaregorySerializer, BookMarkSerializer
 from rest_framework import status
 
 
@@ -21,9 +21,24 @@ class PostView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = PostSerializer(data=request.data, context={'user': request.user})
+        serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.validated_data['author'] = request.user
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BookMarkView(APIView):
+    def get(self, request):
+        posts = BookMark.objects.filter(user=request.user).all()
+        serializer = BookMarkSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = BookMarkSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['user'] = request.user
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

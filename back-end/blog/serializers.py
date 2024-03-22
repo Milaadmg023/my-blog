@@ -10,3 +10,8 @@ class PostSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "author": {'required': False}
         }
+
+class CaregorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'

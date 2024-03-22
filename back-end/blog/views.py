@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Post
-from .serializers import PostSerializer
+from .models import Post, Category
+from .serializers import PostSerializer, CaregorySerializer
 from rest_framework import status
 
 
 # Create your views here.
+class CategoryView(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CaregorySerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class PostView(APIView):
     def get(self, request):

@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Category, Post
+from .models import Category, Post, BookMark
 from persiantools.jdatetime import JalaliDate, digits
 
 
@@ -31,6 +31,22 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_category(self, obj):
         name = f"{obj.category.title}"
+        return name
+
+
+class BookMarkSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+    post = PostSerializer()
+
+    class Meta:
+        model = BookMark
+        fields = ['user', 'post']
+        extra_kwargs = {
+            "user": {'required': False}
+        }
+
+    def get_user(self, obj):
+        name = f"{obj.user.first_name} {obj.user.last_name}"
         return name
 
 

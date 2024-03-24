@@ -1,14 +1,23 @@
 from django.shortcuts import render
+from drf_spectacular.utils import extend_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Post
-from .serializers import PostSerializer, UserSerializer
+from .models import Post, Category, BookMark
+from .serializers import PostSerializer, CaregorySerializer, BookMarkSerializer
 from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
+class CategoryView(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CaregorySerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+@extend_schema(
+    request=PostSerializer,
+    responses={200: PostSerializer})
 class PostView(APIView):
     def get(self, request):
         posts = Post.objects.all()
@@ -18,21 +27,25 @@ class PostView(APIView):
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            new_post = Post.objects.create(title=request.data['title'], description=request.data['description'])
-            new_post.save()
+            serializer.validated_data['author'] = request.user
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({'message': 'error creating post!'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class RegisterUserView(APIView):
+@extend_schema(
+    request=BookMarkSerializer,
+    responses={200: BookMarkSerializer})
+class BookMarkView(APIView):
+    def get(self, request):
+        posts = BookMark.objects.filter(user=request.user).all()
+        serializer = BookMarkSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = BookMarkSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                "user": serializer.data,
-                "refresh": str(refresh),
-                "access": str(refresh.access_token)
-            }, status=status.HTTP_201_CREATED)
+            serializer.validated_data['user'] = request.user
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

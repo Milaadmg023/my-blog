@@ -8,6 +8,22 @@ import Tags from '../Components/Tags';
 
 
 function Home() {
+  const getPosts = async()=>{
+    try {
+      await fetch("http://127.0.0.1:8000/blog/posts")
+      .then((res)=>{
+        return res.json()
+      })
+      .then((data)=>{
+        console.log(data);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  React.useEffect(()=>{
+    getPosts()
+  }, [])
   return (
     <>
     <NewPosts/>

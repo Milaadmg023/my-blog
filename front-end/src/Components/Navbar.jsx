@@ -74,8 +74,8 @@ function Navbar() {
               <div className="flex flex-shrink-0 items-center">
                 <img
                   alt="Your Company"
-                  className="h-10 w-auto"
-                  src="/photo_2024-03-29_16-46d-34.jpg"
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                 />
               </div>
               <div className="hidden sm:ml-6 sm:block">

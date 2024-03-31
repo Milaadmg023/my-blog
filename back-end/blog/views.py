@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 from .models import Post, Category, BookMark
 from .serializers import PostSerializer, CaregorySerializer, BookMarkSerializer
 from rest_framework import status
-from rest_framework.generics import RetrieveAPIView
 
 
 # Create your views here.
@@ -32,13 +31,6 @@ class PostView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class PostDetailView(APIView):
-   def get(self, request, pk):
-       post  = Post.objects.get(id=pk)
-       serializer  = PostSerializer(post)
-       return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 
 @extend_schema(

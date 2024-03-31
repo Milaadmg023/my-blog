@@ -13,13 +13,14 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('title', 'description', 'category', 'writer', 'created', 'days_ago')
+        fields = ('id','title', 'description', 'category', 'writer', 'created', 'days_ago')
         extra_kwargs = {
             "author": {'required': False}
         }
 
     def get_days_ago(self, obj):
-        return f"{digits.to_word((timezone.now().date() - obj.created.date()).days)} روز پیش"
+        days_ago = timezone.now().date() - obj.created.date()
+        return f"{days_ago.days}"
 
     def get_created(self, obj):
         date = JalaliDate(obj.created, locale='fa')

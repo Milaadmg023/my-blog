@@ -13,7 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('id','title', 'description', 'category', 'writer', 'created', 'days_ago')
+        fields = ('id', 'title', 'description', 'category', 'writer', 'created', 'days_ago')
         extra_kwargs = {
             "author": {'required': False}
         }

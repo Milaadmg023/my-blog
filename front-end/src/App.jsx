@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import Navbar from "./Components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -19,80 +20,37 @@ import Users from "./Pages/Dashboard/Users";
 import Statics from "./Pages/Dashboard/Statics";
 
 function App() {
-  const postData = [
-    {
-      tag: "آژانس",
-      title: "فعل و انفعالات موس در طراحی",
-      author: "میلاد",
-      date: "فوریه 28, 2019",
-      desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
-      img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
-      id: 1,
-    },
-    {
-      tag: "آژانس",
-      title: "فعل و انفعالات موس در طراحی",
-      author: "میلاد",
-      date: "فوریه 28, 2019",
-      desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
-      img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
-      id: 2,
-    },
-    {
-      tag: "آژانس",
-      title: "فعل و انفعالات موس در طراحی",
-      author: "میلاد",
-      date: "فوریه 28, 2019",
-      desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
-      img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
-      id: 3,
-    },
-    {
-      tag: "آژانس",
-      title: "فعل و انفعالات موس در طراحی",
-      author: "میلاد",
-      date: "فوریه 28, 2019",
-      desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
-      img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
-      id: 4,
-    },
-    {
-      tag: "آژانس",
-      title: "فعل و انفعالات موس در طراحی",
-      author: "میلاد",
-      date: "فوریه 28, 2019",
-      desc: "نیازهای لومودو رزرو شده. توده یاس. با شرکای ارائه شده venenatis lorem ، بلافاصله. تا فوتبال ، چیزهای برتر ، فوتبال بچه ها ، قیمت یک ، سالاد. Onsequat که…",
-      img: "https://pmark.ir/soledad/wp-content/uploads/2019/02/43-1170x780.jpg",
-      id: 5,
-    },
-  ];
+  const { postData, setPostData } = React.useState({});
 
   return (
-    <SinglePostContext.Provider value={postData}>
+    <SinglePostContext.Provider value={{ postData, setPostData }}>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path="*" element={<NotFound/>}/>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/post/:postId" element={<SinglePost />} />
-          <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/user" element={<Dashboard/>}>
-            <Route index path="/user/" element={<Saved/>}/>
-            <Route path="/user/setting" element={<Setting/>}/>
-          </Route>
-          <Route path="/admin" element={<Dashboard/>}>
-            <Route path="/admin/" element={<Posts/>}/>
-            <Route path="/admin/users" element={<Users/>}/>
-            <Route path="/admin/statics" element={<Statics/>}/>
-            <Route path="/admin/setting" element={<Setting/>}/>
-          </Route>
-        </Routes>
-        <div>
-          <Socials/>
+        <div className="pb-[20vh]">
+          <Routes>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/post/:postId" element={<SinglePost />} />
+            <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/user" element={<Dashboard />}>
+              <Route index path="/user/" element={<Saved />} />
+              <Route path="/user/setting" element={<Setting />} />
+            </Route>
+            <Route path="/admin" element={<Dashboard />}>
+              <Route path="/admin/" element={<Posts />} />
+              <Route path="/admin/users" element={<Users />} />
+              <Route path="/admin/statics" element={<Statics />} />
+              <Route path="/admin/setting" element={<Setting />} />
+            </Route>
+          </Routes>
+        </div>
+
+        <div className="fixed bottom-0 right-0 z-50 left-0">
+          <Socials />
         </div>
       </BrowserRouter>
     </SinglePostContext.Provider>

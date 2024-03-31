@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 
 function Dashboard() {
   const location = useLocation();
@@ -42,17 +42,13 @@ function Dashboard() {
     },
   ];
 
+
+
   if (directory === "admin") {
     items = adminItems;
   } else if (directory === "user") {
     items = userItems;
   }
-
-  const [menuStatus, setMenuStatus] = React.useState(false);
-  const menuHandler = () => {
-    setMenuStatus((prev) => !prev);
-    console.log(menuStatus);
-  };
 
   return (
     <>
@@ -61,7 +57,7 @@ function Dashboard() {
         className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]"
       >
         {/* Dshboard Header & Menu */}
-        <div className={`${menuStatus ? "block" : "hidden"} border-r lg:block`}>
+        <div className="hidden border-r lg:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-[60px] items-center border-b px-6">
               <a className="flex items-center gap-2 font-semibold" href="#">
@@ -107,21 +103,25 @@ function Dashboard() {
 
         <div className="flex flex-col">
           <header className="flex justify-between h-14 lg:h-[60px] items-center gap-4 border-b px-6">
-            <div
-              onClick={() => {
-                setMenuStatus((prev) => !prev);
-                console.log(menuStatus);
-              }}
-              className="lg:hidden"
-            >
-              <input id="checkbox" type="checkbox" />
-              <label className="toggle" htmlFor="checkbox">
-                <div className="bars" id="bar1" />
-                <div className="bars" id="bar2" />
-                <div className="bars" id="bar3" />
-              </label>
-            </div>
-
+            <a className="lg:hidden">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
+                <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
+                <path d="M12 3v6" />
+              </svg>
+              <span className="sr-only">Home</span>
+            </a>
             <h1 className="font-semibold text-lg"></h1>
             <button
               aria-expanded="false"

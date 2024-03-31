@@ -8,28 +8,12 @@ import Tags from '../Components/Tags';
 
 
 function Home() {
-  const [posts , setPosts] = React.useState([])
-  const getPosts = async()=>{
-    try {
-      const data = await fetch("http://127.0.0.1:8000/blog/posts")
-      const res = await data.json()
-      setPosts(res)
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  React.useEffect(()=>{
-    getPosts()
-  }, [])
-
-  const lastPosts = posts.slice(0, 2)
-  console.log(lastPosts , posts);
   return (
-    <main className='mx-1'>
-    <NewPosts last={lastPosts}/>
+    <>
+    <NewPosts/>
     <div className='grid grid-cols-1 lg:grid-cols-3 lg:w-[80%] mx-auto mt-6'>
       <div className='col-span-2'>
-        <AllPosts posts={posts}/>
+        <AllPosts />
       </div>
       
       <div className='pt-2 lg:p-0'>
@@ -39,7 +23,7 @@ function Home() {
         <Tags/>
       </div>
     </div>
-    </main>
+    </>
   )
 }
 

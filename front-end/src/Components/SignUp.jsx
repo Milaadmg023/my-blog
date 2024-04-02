@@ -1,7 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , useLocation  } from "react-router-dom";
 
 function SignUp(props) {
+  const location = useLocation();
+  const pathName = location.pathname;
   const navigate = useNavigate();
   const data = props.props[0];
   const [userData, setUserData] = React.useState({});
@@ -12,9 +14,8 @@ function SignUp(props) {
       ...prevState,
       [name]: value,
     }));
-    console.log(userData);
   };
-  const handleSubmit =  async (e) => {
+  const handleRegister =  async (e) => {
     e.preventDefault();
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(userData.email)) {
@@ -30,9 +31,10 @@ function SignUp(props) {
       body: JSON.stringify(userData),
     };
     try {
-      const response = await fetch("http://127.0.0.1:8000/account/register", requestOptions)
+      const response = await fetch(`http://127.0.0.1:8000/account${pathName}`, requestOptions)
       const data = await response.json();
-      console.log(data);
+      localStorage.setItem('access_token', data.access)
+      localStorage.setItem('refresh_token', data.refresh)
       if (data) {
         navigate('/user')
       }
@@ -104,7 +106,7 @@ function SignUp(props) {
                     type="password"
                   />
                   <button
-                    onClick={handleSubmit}
+                    onClick={handleRegister}
                     className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                   >
                     <svg

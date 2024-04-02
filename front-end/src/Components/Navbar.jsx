@@ -94,9 +94,9 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            {/* user items */}
-            {/*<UserType/>*/}
-            <GuestType/>
+            {
+              localStorage.getItem('access_token') ? <UserType/> : <GuestType/>
+            }
           </div>
         </div>
         {/* Mobile Menu */}

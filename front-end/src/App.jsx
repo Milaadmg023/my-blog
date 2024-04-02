@@ -6,7 +6,6 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import SinglePost from "./Pages/SinglePost";
-import FilterdPosts from "./Pages/FilterdPosts";
 import SinglePostContext from "./Context/SinglePostContext";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
@@ -18,6 +17,7 @@ import Setting from "./Pages/Dashboard/Setting";
 import Posts from "./Pages/Dashboard/Posts";
 import Users from "./Pages/Dashboard/Users";
 import Statics from "./Pages/Dashboard/Statics";
+import Tags from "./Pages/Tags";
 
 function App() {
   const { postData, setPostData } = React.useState({});
@@ -26,14 +26,14 @@ function App() {
     <SinglePostContext.Provider value={{ postData, setPostData }}>
       <BrowserRouter>
         <Navbar />
-        <div className="pb-[20vh]">
+        <div>
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/post/:postId" element={<SinglePost />} />
-            <Route path="/filterdposts/:tag" element={<FilterdPosts />} />
+            <Route path="/tags/:tag" element={<Tags/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<Dashboard />}>
@@ -49,7 +49,7 @@ function App() {
           </Routes>
         </div>
 
-        <div className="fixed bottom-0 right-0 z-50 left-0">
+        <div className="mt-5">
           <Socials />
         </div>
       </BrowserRouter>

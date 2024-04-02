@@ -2,7 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Tags() {
-  const tagsArray = ["HTML", "CSS", "JS", "VUE"];
+  const [tagsArray, setTagsArray] = React.useState();
+  const tagHandler = async ()=>{
+    try {
+      const data = await fetch(`http://127.0.0.1:8000/blog/category`)
+      const res = await data.json()
+      setTagsArray(res)
+    } catch (error) {
+      console.log(error);
+    }
+  }  
+  React.useEffect(()=>{
+    tagHandler()
+  },[])
   return (
     <>
       <div className="px-4 pb-6 md:px-6 my-3" dir="rtl">
@@ -10,12 +22,12 @@ function Tags() {
           دسته ها
         </h2>
         <div className="space-y-3 mt-2">
-          {tagsArray.map((tag, index) => {
+          {tagsArray?.map((tag) => {
             return (
-              <div className="flex flex-col gap-2" key={index}>
-                <Link to={`filterdposts/${tag}`}>
+              <div className="flex flex-col gap-2" key={tag.id}>
+                <Link to={`tags/${tag}`}>
                   <div className="flex items-center w-[5vw] cursor-pointer justify-between">
-                    <span>{tag}</span>
+                    <span className="text-nowrap">{tag.title}</span>
                     <svg
                       className="bi bi-arrow-left-short"
                       fill="currentColor"

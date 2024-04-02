@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 function SinglePost() {
   const { postId } = useParams();
   const [post, setPost] = React.useState({});
-  const getPosts = async () => {
+  const getPost = async () => {
     try {
       const data = await fetch(`http://127.0.0.1:8000/blog/post/${postId}`);
       const res = await data.json();
@@ -14,8 +14,8 @@ function SinglePost() {
     }
   }
   React.useEffect(() => {
-    getPosts()
-  })
+    getPost()
+  }, [])
 
   return (
     <section className="w-[80%] mx-auto">

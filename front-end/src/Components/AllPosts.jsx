@@ -1,11 +1,8 @@
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-import SinglePostContext from "../Context/SinglePostContext";
+import { Link} from "react-router-dom";
 
 
 function AllPosts({posts}) {
-  //const postData = useContext(SinglePostContext)
-  const {tag} = useParams()
   
   return (
     <section id="posts__container" className="flex flex-col gap-2">
@@ -19,7 +16,7 @@ function AllPosts({posts}) {
                 className="p-1 flex flex-col justify-center"
               >
                 <p id="tag" className="text-indigo-500">
-                  <Link to={`filterdposts/${item.category}`}>
+                  <Link to={`/`}>
                   {item.category}
                   </Link>          
                 </p>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate , useLocation  } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function SignUp(props) {
   const location = useLocation();
@@ -15,15 +15,15 @@ function SignUp(props) {
       [name]: value,
     }));
   };
-  const handleRegister =  async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(userData.email)) {
       setError(true);
       setTimeout(() => {
         setError(false);
-      }, 5000 );
-      return
+      }, 5000);
+      return;
     }
     const requestOptions = {
       method: "POST",
@@ -31,21 +31,37 @@ function SignUp(props) {
       body: JSON.stringify(userData),
     };
     try {
-      const response = await fetch(`http://127.0.0.1:8000/account${pathName}`, requestOptions)
+      const response = await fetch(
+        `http://127.0.0.1:8000/account${pathName}`,
+        requestOptions
+      );
       const data = await response.json();
-      localStorage.setItem('access_token', data.access)
-      localStorage.setItem('refresh_token', data.refresh)
-      if (data) {
-        navigate('/user')
+      if (!data.error) {
+        localStorage.setItem("access_token", data.access);
+        localStorage.setItem("refresh_token", data.refresh);
+        navigate("/user");
+      } else {
+        setError(true)
+        setTimeout(() => {
+          setError(false);
+        }, 4000);
       }
+
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <>
-      <div id="alert" className={`h-8 flex py-2 items-center justify-center text-white text-center ${error ? "block" : "hidden"}`}>
-        <span className="bg-red-500 p-2 rounded-lg">لطفا یک نشانی ایمیل معتبر بنویسید</span>
+      <div
+        id="alert"
+        className={`h-8 flex py-2 items-center justify-center text-white text-center ${
+          error ? "block" : "hidden"
+        }`}
+      >
+        <span className="bg-red-500 p-2 rounded-lg">
+          اطلاعات وارد شده معتبر نمی باشد.
+        </span>
       </div>
       <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">

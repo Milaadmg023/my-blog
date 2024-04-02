@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useNavigate, Outlet, useLocation } from "react-router-dom";
-import BoxContainer from "../../Components/Dashboard/BoxContainer";
-import DashboardItems from "../../Components/Dashboard/DashboardItems";
-import PannelMenu from "../../Components/Dashboard/PannelMenu";
+import BoxContainer from "../Components/Dashboard/BoxContainer";
+import DashboardItems from "../Components/Dashboard/DashboardItems";
+import PannelMenu from "../Components/Dashboard/PannelMenu";
 
 function Dashboard() {
   const Navigate = useNavigate();
@@ -15,7 +15,6 @@ function Dashboard() {
   const location = useLocation();
   const pathname = location.pathname;
   const directory = pathname.split("/")[1];
-  console.log(directory);
 
 
   return (

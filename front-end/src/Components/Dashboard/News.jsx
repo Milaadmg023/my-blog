@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const News = () => {
   return (
-    <div className="bg-blue-50 p-2 rounded-lg w-[30vw]">
+    <div className="bg-blue-50 p-2 rounded-lg lg:w-[30vw] w-full">
       <h2>جدیدترین های سایت</h2>
       <div id="post__contaier" className="flex flex-col gap-2">
         <div

@@ -10,12 +10,12 @@ const PannelMenu = () => {
   const userItems = [
     {
       name: "پروفایل",
-      link: "",
+      link: "/",
       icon: "bi bi-bookmark",
     },
     {
       name: "نشان شده ها",
-      link: "",
+      link: "/bookmarks",
       icon: "bi bi-bookmark",
     },
     {
